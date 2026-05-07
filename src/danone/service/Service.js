@@ -96,7 +96,8 @@ class Service {
         };
 
         // 🔥 request API
-      const response = await fetch("https://operator-backend-2l9x.onrender.com/get_guide", {
+     // const response = await fetch("https://operator-backend-2l9x.onrender.com/get_guide", {
+      const response = await fetch("http://127.0.0.1:8000/get_guide", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
