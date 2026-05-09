@@ -1,6 +1,117 @@
 import Functions from '../functions js/FunctionsJS.js';
 
 class Service {
+  
+  async buscar_nfe(data, typeShearch) {
+
+    const functions = new Functions();
+
+    try {
+
+      let response = null;
+      const listPdfsReader = [];
+
+      const filesPdf = data.files;
+
+      // 🔥 valida arquivos
+      if (!filesPdf || filesPdf.length === 0) {
+        return {
+          ok: false,
+          error: "Erro ao ler Pdf. Os pdfs estão vazios",
+          data: null
+        };
+      }
+
+      // 🔥 converte PDFs para base64
+      for (const file of filesPdf) {
+
+        const filesBase64 = await functions.readPdf(file);
+
+        if (!filesBase64 || !filesBase64.ok) {
+          continue;
+        }
+
+        listPdfsReader.push({
+          data: filesBase64.data,
+          name: file.name
+        });
+      }
+
+      // 🔥 nenhum PDF válido
+      if (listPdfsReader.length === 0) {
+        return {
+          ok: false,
+          error: "Nenhum PDF válido encontrado",
+          data: null
+        };
+      }
+
+      // 🔥 payload final
+      const payload = {
+        ...data,
+        files: listPdfsReader
+      };
+
+      // 🔥 define endpoint
+      if (typeShearch === "nota_fiscal") {
+
+        response = await fetch(
+          "http://127.0.0.1:8000/buscar_nota",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          }
+        );
+
+      } else if (typeShearch === "embarque") {
+
+        response = await fetch(
+          "http://127.0.0.1:8000/buscar_nota",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          }
+        );
+
+      } else {
+
+        return {
+          ok: false,
+          error: "Tipo de busca inválido",
+          data: null
+        };
+      }
+
+      // 🔥 lê resposta da API
+      const result = await response.json();
+
+      // 🔥 valida erro backend
+      if (result.ok === false) {
+        return result;
+      }
+
+      // 🔥 salva PDF
+      const statusSave = functions.savePdfFromBase64(result);
+
+      return statusSave;
+
+    } catch (error) {
+
+      console.error("Service error:", error);
+
+      return {
+        ok: false,
+        status: error.message || "Erro inesperado no processamento",
+        data: null
+      };
+    }
+  }
 
   async nfe_service(data) {
 

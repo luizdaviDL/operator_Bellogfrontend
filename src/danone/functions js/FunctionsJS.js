@@ -151,14 +151,16 @@ class Functions {
         };
       }
 
-      // 🔥 converter base64 → binário
+      // 🔥 converter base64 para binário ex: JVBERi0xLjcK... para %PDF-1.7...
       const byteCharacters = atob(base64);
+      //Cria um array vazio do tamanho do arquivo.
       const byteNumbers = new Array(byteCharacters.length);
-
+      //LOOP PEGANDO CADA BYTE (binario)
       for (let i = 0; i < byteCharacters.length; i++) {
+        //Transforma caractere para número ASCII/binário. ex: "P" -> 80 "D" -> 68 array final [37, 80, 68, 70...]
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
-
+      //Uint8Array é um array binário real.
       const byteArray = new Uint8Array(byteNumbers);
 
       // 🔥 criar blob PDF
@@ -191,3 +193,7 @@ class Functions {
 }
 
 export default Functions;
+
+
+
+

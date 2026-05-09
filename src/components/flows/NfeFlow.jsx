@@ -3,9 +3,9 @@ import { Outlet } from "react-router-dom";
 
 const NfeFlow = () => {
   const [faturamento, setFaturamento] = useState("");
-  const [chegada, setChegada] = useState("");
-  const [embarque, setEmbarque] = useState("");
+  const [chegada, setChegada] = useState("");  
   const [files, setFiles] = useState([]);
+  const [inputBuscaNfe, setInputBuscaNfe] = useState([]);
 
   return (
     <Outlet context={{
@@ -14,9 +14,9 @@ const NfeFlow = () => {
       chegada,
       setChegada,
       files,
-      setFiles,
-      embarque,
-      setEmbarque
+      setFiles,      
+      inputBuscaNfe, 
+      setInputBuscaNfe
     }} />
   );
 };

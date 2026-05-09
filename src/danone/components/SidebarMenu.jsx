@@ -100,7 +100,7 @@ export default function SidebarMenu({ onSelect }) {
 
             <div
               style={styles.option(selected === "/buscar_nfe")}
-             // onClick={() => handleSelect("/buscar_nfe")}
+              onClick={() => handleSelect("/buscar_nfe")}
             >
               Buscar Nf-e
             </div>

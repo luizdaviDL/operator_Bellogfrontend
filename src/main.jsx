@@ -5,8 +5,10 @@ import FillesPdf from './danone/pages/FillesPdf.jsx'
 import DateInputs from './danone/components/DateInputs.jsx'
 import NfeFlow from './components/flows/NfeFlow.jsx'
 import Tryp from './danone/guides/Tryp.jsx'
+import FilterTipeShearch from './danone/nfe/FilterTipeShearch.jsx'
 
 import App from './App.jsx'
+
 
 
 
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
           {
             path: "embarque",
             element: <Tryp label={"Digite o numero de embarque"}/>,
+          },
+          {
+            path: "buscar_nfe",
+            element: <FillesPdf props={"Enviar Nf-es"} url={"/tipo_filtro"}/>,
+          },
+          {
+            path: "tipo_filtro",
+            element: <FilterTipeShearch />,
           }
         ]
       }
