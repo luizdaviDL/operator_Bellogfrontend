@@ -56,7 +56,7 @@ class Service {
       if (typeShearch === "nota_fiscal") {
 
         response = await fetch(
-          "http://127.0.0.1:8000/buscar_nota",
+          "https://operator-backend-2l9x.onrender.com/buscar_nota",
           {
             method: "POST",
             headers: {
@@ -69,7 +69,7 @@ class Service {
       } else if (typeShearch === "embarque") {
 
         response = await fetch(
-          "http://127.0.0.1:8000/buscar_nota",
+          "https://operator-backend-2l9x.onrender.com/buscar_nota",
           {
             method: "POST",
             headers: {
@@ -208,7 +208,7 @@ class Service {
 
         // 🔥 request API
      // const response = await fetch("https://operator-backend-2l9x.onrender.com/get_guide", {
-      const response = await fetch("http://127.0.0.1:8000/get_guide", {
+      const response = await fetch("https://operator-backend-2l9x.onrender.com/get_guide", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
