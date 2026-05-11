@@ -108,7 +108,7 @@ export default function SidebarMenu({ onSelect }) {
         )}
       </div>
 
-      {/* Buscar */}
+      {/* Buscar 
       <div>
         <div
           style={styles.item(open === "buscar")}
@@ -130,7 +130,7 @@ export default function SidebarMenu({ onSelect }) {
             </div>
           </div>
         )}
-      </div>
+      </div>*/}
 
     </div>
   );
